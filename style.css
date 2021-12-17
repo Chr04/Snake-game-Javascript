@@ -1,0 +1,27 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+body{
+    background-color: black;
+    color: #fff;
+}
+
+#screen{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    border: 2px solid greenyellow;
+}
+
+.container{
+    position: absolute;
+    left: 50px;
+    top: 50px;
+}
