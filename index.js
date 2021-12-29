@@ -63,7 +63,6 @@ const cobrinhaConfigs = () => {
             velX = 0;
             velY = 0
             cauda = 5;
-            menuDiv.style.zIndex = "2"
             macasComidas.textContent = `Maçãs comidas: ${devoradas = 0}`;
         }
     }
