@@ -12,8 +12,20 @@
 <body>
     <canvas width="600" height="600" id="screen"></canvas>
 
+    <div id="menu">
+        <h1>Snake game - Christian Dantas &copy</h1>
+        <div class="container-btn">
+            <button class="btn btn-jogar" onclick="btnPlay()">Jogar</button>
+            <button class="btn btn-jogar" onclick="btnDificuldade()">
+                Nível de dificuldade
+            </button>
+            <button class="btn btn-jogar" onclick="creditos()">Créditos</button>
+        </div>
+    </div>
+
     <div class="container">
         <p id="macasComidas"></p>
+        <p id="dica"></p>
     </div>
 
     <script src="./index.js"></script>

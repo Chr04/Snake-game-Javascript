@@ -1,6 +1,13 @@
+const body = document.querySelector("body");
+const menuDiv = document.getElementById("menu");
 const canvas = document.getElementById("screen");
 const ctx = canvas.getContext("2d");
 const macasComidas = document.getElementById("macasComidas");
+const dica = document.getElementById("dica");
+
+let menu = true;
+let alteraDificuldade = false;
+let dificuldade = 80;
 
 const velocidade = 1;
 let velX = 0;
@@ -39,6 +46,7 @@ const canvasEstilo = () => {
     ctx.fillStyle = "green";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     macasComidas.textContent = `Maçãs comidas: ${devoradas}`
+    dica.textContent = `Aperte "M" para voltar ao menu`
 }
 
 const macaConfigs = () => {
@@ -55,7 +63,8 @@ const cobrinhaConfigs = () => {
             velX = 0;
             velY = 0
             cauda = 5;
-            macasComidas.textContent = `Maçãs comidas: ${devoradas = 0}`
+            menuDiv.style.zIndex = "2"
+            macasComidas.textContent = `Maçãs comidas: ${devoradas = 0}`;
         }
     }
     rastro.push({ x: posXcobrinha, y: posYcobrinha });
@@ -80,11 +89,9 @@ const game = () => {
     macaConfigs();
     cobrinhaConfigs();
     comerMaca();
-
 }
 
 const moverCobrinha = (evento) => {
-
     if (evento.key === "ArrowLeft") {
         velX = -velocidade;
         velY = 0;
@@ -103,5 +110,42 @@ const moverCobrinha = (evento) => {
     }
 }
 
+function btnPlay() {
+    menu = false;
+    if (menu === false) {
+        canvas.style.display = "block";
+        menuDiv.style.display = "none"
+        body.style.backgroundColor = "#000";
+        body.style.color = "#fff";
+        setInterval(game, dificuldade);
+        body.addEventListener("keydown", (event) => {
+            if (event.key == "m") {
+                document.location.reload();
+            }
+        })
+    }
+}
+
+function btnDificuldade() {
+    if (alteraDificuldade === false) {
+        dificuldade = 80;
+        alert(dificuldade == 80 ? `Velocidade ${dificuldade} - Médio!` : dificuldade);
+        return alteraDificuldade = true;
+    }
+    if (alteraDificuldade === true) {
+        dificuldade = 40;
+        alert(dificuldade == 40 ? `Velocidade ${dificuldade} - Díficil!` : dificuldade)
+    }
+    alteraDificuldade = false;
+}
+
+function creditos() {
+    alert("Snake game - desenvolvido por Christian")
+}
+
 document.addEventListener("keydown", moverCobrinha)
-setInterval(game, 80)
+
+if (menu) {
+    canvas.style.display = "none";
+}
+
