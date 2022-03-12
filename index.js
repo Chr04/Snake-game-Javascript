@@ -24,6 +24,9 @@ let devoradas = 0;
 let posXfruta = 15;
 let posYfruta = 15;
 
+const audioTheme = new Audio("./assets/theme.mp3");
+const audioEating = new Audio("./assets/eating.mp3");
+
 const colisaoBorda = () => {
     posXcobrinha += velX;
     posYcobrinha += velY;
@@ -76,6 +79,7 @@ const cobrinhaConfigs = () => {
 const comerMaca = () => {
     if (posXfruta == posXcobrinha && posYfruta == posYcobrinha) {
         cauda++;
+        audioEating.play();
         posXfruta = Math.floor(Math.random() * quantidadePeca);
         posYfruta = Math.floor(Math.random() * quantidadePeca);
         macasComidas.textContent = `Maçãs comidas: ${devoradas++}`
@@ -88,6 +92,7 @@ const game = () => {
     macaConfigs();
     cobrinhaConfigs();
     comerMaca();
+    audioTheme.play();
 }
 
 const moverCobrinha = (evento) => {
@@ -139,7 +144,7 @@ function btnDificuldade() {
 }
 
 function creditos() {
-    alert("Snake game - desenvolvido por Christian")
+    alert("Snake game - desenvolvido por Christian");
 }
 
 document.addEventListener("keydown", moverCobrinha)
